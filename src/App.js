@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export default function App() {
-  return <Header>hello world!</Header>;
+  return <Container>hello world!</Container>;
 }
 
-const Header = styled.h1`
+const Container = styled.main`
   color: blue;
 `;
