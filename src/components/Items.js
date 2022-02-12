@@ -1,7 +1,15 @@
 import styled from 'styled-components';
 
-export default function Item({ children }) {
-  return <ItemButton type="button">{children}</ItemButton>;
+export default function Item({ id, children, onItemClick }) {
+  function handleClick(id) {
+    onItemClick(id);
+  }
+
+  return (
+    <ItemButton onClick={() => handleClick(id)} type="button">
+      {children}
+    </ItemButton>
+  );
 }
 
 const ItemButton = styled.button`

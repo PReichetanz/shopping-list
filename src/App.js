@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import SearchInput from './components/Search.js';
 import { useEffect, useState } from 'react';
+import ShoppingList from './components/ShoppingList.js';
 
 export default function App() {
   const [data, setData] = useState(['hello', 'huhu']);
-  console.log(data);
+  const [activeItems, setActiveItems] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -12,7 +13,11 @@ export default function App() {
 
   return (
     <Container>
-      <SearchInput fetchedItems={data}></SearchInput>
+      <ShoppingList onButtonClick={deleteActiveItem} itemsToBuy={activeItems} />
+      <SearchInput
+        onButtonClick={addToActiveItems}
+        fetchedItems={data}
+      ></SearchInput>
     </Container>
   );
 
@@ -26,6 +31,25 @@ export default function App() {
     } else {
       console.error('Opps, something went wrong!');
     }
+  }
+
+  function addToActiveItems(id) {
+    const choosenItem = findItemById(id, data);
+    const existingItem = findItemById(id, activeItems);
+    if (existingItem) {
+      return;
+    } else {
+      setActiveItems([...activeItems, choosenItem]);
+    }
+  }
+
+  function deleteActiveItem(id) {
+    const newActiveItems = activeItems.filter((item) => item['_id'] !== id);
+    setActiveItems(newActiveItems);
+  }
+
+  function findItemById(id, array) {
+    return array.find((item) => item['_id'] === id);
   }
 }
 

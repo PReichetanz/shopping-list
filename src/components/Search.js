@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { search } from 'fast-fuzzy';
 import Item from './Items.js';
 
-export default function Search({ fetchedItems }) {
+export default function Search({ fetchedItems, onButtonClick }) {
   const [input, setInput] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
@@ -30,8 +30,10 @@ export default function Search({ fetchedItems }) {
       {searchResults ? (
         <ResultList>
           {searchResults.map((result) => (
-            <li key={result.id}>
-              <Item>{result.name.de}</Item>
+            <li key={result['_id']}>
+              <Item id={result['_id']} onItemClick={onButtonClick}>
+                {result.name.de}
+              </Item>
             </li>
           ))}
         </ResultList>
