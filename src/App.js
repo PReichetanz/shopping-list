@@ -3,11 +3,13 @@ import SearchInput from './components/Search.js';
 import { useEffect } from 'react';
 //import useLocalStorage from './hooks/useLocalStorage.js';
 import useItems from './hooks/useItems.js';
+import useToggle from './hooks/useToggle.js';
 import ShoppingList from './components/ShoppingList.js';
 
 export default function App() {
   const { activeItems, addToActiveItems, deleteActiveItem, fetchData, data } =
     useItems();
+  const [isShoppingDone, setIsShoppingDone] = useToggle();
 
   useEffect(() => {
     fetchData();
@@ -20,6 +22,10 @@ export default function App() {
         onButtonClick={addToActiveItems}
         fetchedItems={data}
       ></SearchInput>
+      <h2>Warst Du heute schon einkaufen?</h2>
+      <button onClick={setIsShoppingDone}>
+        {isShoppingDone ? 'Ja! 👍' : 'Nein... 😣'}
+      </button>
     </Container>
   );
 }
