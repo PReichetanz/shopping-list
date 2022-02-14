@@ -1,11 +1,11 @@
 import useLocalStorage from './useLocalStorage';
-import { useState } from 'react';
+import useFetch from './useFetch';
 
 export default function useItems() {
   const [activeItems, setActiveItems] = useLocalStorage('ShoppingItems', []);
-  const [data, setData] = useState(['hello', 'huhu']);
+  const [data] = useFetch();
 
-  function addToActiveItems(id, array) {
+  function addToActiveItems(id) {
     const choosenItem = findItemById(id, data);
     const existingItem = findItemById(id, activeItems);
     if (existingItem) {
@@ -24,17 +24,5 @@ export default function useItems() {
     return array.find((item) => item['_id'] === id);
   }
 
-  async function fetchData() {
-    const response = await fetch(
-      'https://fetch-me.vercel.app/api/shopping/items'
-    );
-    const newData = await response.json();
-    if (response.status === 200) {
-      setData(newData.data);
-    } else {
-      console.error('Opps, something went wrong!');
-    }
-  }
-
-  return { activeItems, addToActiveItems, deleteActiveItem, fetchData, data };
+  return { activeItems, addToActiveItems, deleteActiveItem, data };
 }
