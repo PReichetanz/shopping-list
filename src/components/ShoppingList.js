@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Item from './Items.js';
+import Item from './Item.js';
 
 export default function ShoppingList({ itemsToBuy, onButtonClick }) {
   return (
