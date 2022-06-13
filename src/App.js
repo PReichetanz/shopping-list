@@ -1,18 +1,12 @@
 import styled from 'styled-components';
 import SearchInput from './components/Search.js';
-import { useEffect } from 'react';
 import ShoppingList from './components/ShoppingList.js';
 import useToggle from './hooks/useToggle.js';
 import useItems from './hooks/useItems.js';
 
 export default function App() {
   const [isShoppingDone, setIsShoppingDone] = useToggle();
-  const { activeItems, addToActiveItems, deleteActiveItem, fetchData, data } =
-    useItems();
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+  const { activeItems, addToActiveItems, deleteActiveItem, data } = useItems();
 
   return (
     <Container>
