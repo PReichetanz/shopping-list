@@ -44,8 +44,12 @@ export default function App() {
   }
 
   function deleteActiveItem(id) {
-    const newActiveItems = activeItems.filter((item) => item['_id'] !== id);
-    setActiveItems(newActiveItems);
+    setActiveItems((prevActiveItems) => {
+      const newActiveItems = prevActiveItems.filter(
+        (item) => item['_id'] !== id
+      );
+      return newActiveItems;
+    });
   }
 
   function findItemById(id, array) {
