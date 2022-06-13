@@ -2,10 +2,11 @@ import styled from 'styled-components';
 import SearchInput from './components/Search.js';
 import { useEffect, useState } from 'react';
 import ShoppingList from './components/ShoppingList.js';
+import useLocalStorage from './hooks/useLocalStorage.js';
 
 export default function App() {
   const [data, setData] = useState(['hello', 'huhu']);
-  const [activeItems, setActiveItems] = useState([]);
+  const [activeItems, setActiveItems] = useLocalStorage('Shopping-Items', []);
 
   useEffect(() => {
     fetchData();
