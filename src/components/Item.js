@@ -1,12 +1,8 @@
 import styled from 'styled-components';
 
 export default function Item({ id, children, onItemClick }) {
-  function handleClick(id) {
-    onItemClick(id);
-  }
-
   return (
-    <ItemButton onClick={() => handleClick(id)} type="button">
+    <ItemButton onClick={() => onItemClick(id)} type="button">
       {children}
     </ItemButton>
   );

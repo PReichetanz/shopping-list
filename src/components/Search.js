@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { search } from 'fast-fuzzy';
-import Item from './Items.js';
+import Item from './Item.js';
 
 export default function Search({ fetchedItems, onButtonClick }) {
   const [input, setInput] = useState('');
